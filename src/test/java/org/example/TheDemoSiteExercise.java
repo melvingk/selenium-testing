@@ -45,10 +45,8 @@ public class TheDemoSiteExercise {
         passwordLogin.sendKeys("Nezuko");
         sleep(1000);
         submitButtonLogin.click();
-//        passwordField.sendKeys("Nezuko");
-//        submitButton.click();
-//        sleep(2000);
-//        assertTrue("**Successful Login**",true);
+        assertTrue("**Successful Login**",true);
+        sleep(1000);
 //        if (confirmRegister.getText().equals(name)){
 //            System.out.println("They match");
 //            assertTrue(true);
