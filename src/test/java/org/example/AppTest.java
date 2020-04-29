@@ -5,9 +5,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.security.Key;
 
 import static java.lang.Thread.*;
 import static org.junit.Assert.assertTrue;
@@ -40,6 +43,27 @@ public void seleniumExampleTest() throws InterruptedException{
     assertTrue(imageLink.isDisplayed());
 
 }
+
+    @Test
+    public void seleniumExampleSedndingMultipleKeysTest() throws InterruptedException{
+
+        System.out.println("HA!");
+        sleep(2000);
+        driver.get("https://www.google.com/");
+        sleep(1000);
+        WebElement googleSearchBar = driver.findElement(By.xpath("//*[@id=\"tsf\"]/div[2]/div[1]/div[1]/div/div[2]/input"));
+       // googleSearchBar.sendKeys("funny dog pics");
+        googleSearchBar.sendKeys(Keys.chord("funny ","dog ", "pics", Keys.ENTER));
+        //googleSearchBar.submit();
+       // googleSearchBar.sendKeys(Keys.ENTER);
+        sleep(1000);
+        WebElement linkToPictures = driver.findElement(By.partialLinkText("Images for funny dog"));
+        linkToPictures.click();
+        sleep(1000);
+        WebElement imageLink = driver.findElement(By.xpath("//*[@id=\"yDmH0d\"]/div[2]/c-wiz/div[1]/div/div[1]/div[1]/div/div/span"));
+        assertTrue(imageLink.isDisplayed());
+
+    }
 
 
 @After

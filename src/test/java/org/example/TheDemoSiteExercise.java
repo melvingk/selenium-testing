@@ -17,12 +17,13 @@ public class TheDemoSiteExercise {
     private WebDriver driver;
 
     @Before
-    public void setup(){
+    public void setup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
+
     @Test
-    public void registerUser() throws InterruptedException{
+    public void registerUser() throws InterruptedException {
 
         driver.get("http://thedemosite.co.uk/addauser.php");
         sleep(1000);
@@ -45,7 +46,7 @@ public class TheDemoSiteExercise {
         passwordLogin.sendKeys("Nezuko");
         sleep(1000);
         submitButtonLogin.click();
-        assertTrue("**Successful Login**",true);
+        assertTrue("**Successful Login**", true);
         sleep(1000);
 //        if (confirmRegister.getText().equals(name)){
 //            System.out.println("They match");
@@ -61,7 +62,8 @@ public class TheDemoSiteExercise {
     }
 
     @After
-    public void teardown(){
+    public void teardown() {
+
         driver.close();
     }
 
