@@ -1,6 +1,7 @@
 package org.example;
 
 
+import com.google.common.base.Function;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,9 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 
 import java.security.Key;
 import java.util.List;
@@ -89,6 +88,21 @@ public void seleniumExampleTest() throws InterruptedException{
 
     }
     @Test
+            public void fluentWaitExample(){
+    driver.get("https://www.google.com/");
+    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            .withTimeout(30,TimeUnit.SECONDS)           // looks for 30 secs
+            .pollingEvery(5, TimeUnit.SECONDS)          //
+            .ignoring(NoSuchElementException.class);
+    WebElement searchBar = wait.until(new Function<WebDriver, WebElement>() {
+        @Override
+        public WebElement apply(WebDriver webDriver) {
+            return driver.findElement(By.name("q"));
+        }
+    });
+        assertTrue(searchBar.isDisplayed());
+
+    }
     {
 
     }
