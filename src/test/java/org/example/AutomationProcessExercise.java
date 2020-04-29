@@ -1,6 +1,7 @@
 package org.example;
 
 import com.google.common.base.Function;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,8 +32,26 @@ public class AutomationProcessExercise {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
+    String getAlphabeticString(int n)
+    {
+        // chose a Character random from this String
+        String AlphabeticString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "abcdefghijklmnopqrstuvxyz";
 
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+            int index
+                    = (int) (AlphabeticString .length()
+                    * Math.random());// add Character one by one in end of sb
+            sb.append(AlphabeticString
+                    .charAt(index));
+        }
+        return sb.toString();
+    }
 @Test
+
 public void SearchForAnItem() throws InterruptedException {
 
     driver.get("http://automationpractice.com/index.php");
@@ -41,8 +60,10 @@ public void SearchForAnItem() throws InterruptedException {
             .pollingEvery(5, TimeUnit.SECONDS)          // the frequency of how they check to the success and failure of the check
             .ignoring(NoSuchElementException.class);
 
+
+
     String item = "EVENING DRESSES";
-    String email = "migpi@mwetet.com";
+    String email = "migppei@mwetet.com";
     String firstName = "Tanjiro";
     String lastName = "Kamado";
     String password = "mannna";
@@ -96,7 +117,7 @@ public void SearchForAnItem() throws InterruptedException {
 
 
     maleRadioButton.click();
-    customer_firstname.sendKeys(firstName);
+    customer_firstname.sendKeys(getAlphabeticString(13));
     customer_lastname.sendKeys(lastName);
     passwordField.sendKeys(password);
     address_Field.sendKeys(address);
@@ -108,6 +129,7 @@ public void SearchForAnItem() throws InterruptedException {
 
     WebElement addressConfirmation = driver.findElement(By.className("page-subheading"));
     assertEquals("your delivery address", addressConfirmation.getText().toLowerCase());
+
 
 
 
