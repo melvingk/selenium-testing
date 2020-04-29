@@ -38,7 +38,7 @@ public void SearchForAnItem() throws InterruptedException {
             .ignoring(NoSuchElementException.class);
 
     String item = "EVENING DRESSES";
-    String email = "me@me.com";
+    String email = "mee@me.com";
     WebElement homeSearchBar = driver.findElement(By.id("search_query_top"));
 
     homeSearchBar.sendKeys(item);
@@ -60,7 +60,12 @@ public void SearchForAnItem() throws InterruptedException {
     WebElement openCart = driver.findElement(By.xpath("//*[@id=\"header\"]/div[3]/div/div/div[3]/div/a"));
     openCart.click();
     sleep(3000);
+    WebElement proceedToCheckoutButton = driver.findElement(By.xpath("//*[@id=\"center_column\"]/p[2]/a[1]/span"));
+    proceedToCheckoutButton.click();
 
+    WebElement emailAddressField = driver.findElement(By.id("email_create"));
+    emailAddressField.sendKeys(email);
+    sleep(3000);
 
 
 
@@ -97,8 +102,3 @@ public void SearchForAnItem() throws InterruptedException {
 
 }
 //  assertEquals("Printed Dress",confirmedAddedToCart.getText());
-//    WebElement proceedToCheckoutButton = driver.findElement(By.xpath("//*[@id=\"center_column\"]/p[2]/a[1]/span"));
-//    proceedToCheckoutButton.click();
-//
-//    WebElement emailAddressField = driver.findElement(By.id("email_create"));
-//    emailAddressField.sendKeys(email);
