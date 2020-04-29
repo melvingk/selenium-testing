@@ -52,7 +52,7 @@ public class AutomationProcessExercise {
     }
 @Test
 
-public void SearchForAnItem() throws InterruptedException {
+public void addItemToCart() throws InterruptedException {
 
     driver.get("http://automationpractice.com/index.php");
     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -63,7 +63,7 @@ public void SearchForAnItem() throws InterruptedException {
 
 
     String item = "EVENING DRESSES";
-    String email = "migppei@mwetet.com";
+    String email = "migplppei@mweotpet.com";
     String firstName = "Tanjiro";
     String lastName = "Kamado";
     String password = "mannna";
@@ -75,10 +75,8 @@ public void SearchForAnItem() throws InterruptedException {
 
     homeSearchBar.sendKeys(item);
     homeSearchBar.submit();
-    sleep(2000);
     WebElement confirmedSearchText = driver.findElement(By.className("lighter"));
     assertTrue(confirmedSearchText.isDisplayed());
-    sleep(2000);
     System.out.println(confirmedSearchText.getText());
     //  assertEquals(item,confirmedSearchText.getText());
 
@@ -86,23 +84,21 @@ public void SearchForAnItem() throws InterruptedException {
     clickOnItem.click();
     WebElement addToCart = driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button/span"));
     addToCart.click();
-    sleep(3000);
     WebElement clickTheCross = driver.findElement(By.className("cross"));
+    sleep(3000);  //needs a fluent wait here
     clickTheCross.click();
     WebElement openCart = driver.findElement(By.xpath("//*[@id=\"header\"]/div[3]/div/div/div[3]/div/a"));
     openCart.click();
-    sleep(3000);
     WebElement proceedToCheckoutButton = driver.findElement(By.xpath("//*[@id=\"center_column\"]/p[2]/a[1]/span"));
     proceedToCheckoutButton.click();
 
     WebElement emailAddressField = driver.findElement(By.id("email_create"));
     emailAddressField.sendKeys(email);
     emailAddressField.submit();
-    sleep(3000);
     WebElement issue = driver.findElement(By.className("page-heading"));
     assertTrue(issue.isDisplayed());
     System.out.println(issue.getText());
-    sleep(3000);
+sleep(3000);
 
     WebElement maleRadioButton = driver.findElement(By.id("id_gender1"));
     WebElement customer_firstname = driver.findElement(By.id("customer_firstname"));
@@ -115,11 +111,12 @@ public void SearchForAnItem() throws InterruptedException {
     WebElement phone_mobile_Field = driver.findElement(By.id("phone_mobile"));
     WebElement register = driver.findElement(By.xpath("//*[@id=\"submitAccount\"]/span"));
 
-
+    sleep(3000);
+    int a = (int) (Math.random()+ 10);
     maleRadioButton.click();
-    customer_firstname.sendKeys(getAlphabeticString(13));
-    customer_lastname.sendKeys(lastName);
-    passwordField.sendKeys(password);
+    customer_firstname.sendKeys(getAlphabeticString(a));
+    customer_lastname.sendKeys(getAlphabeticString(a));
+    passwordField.sendKeys(getAlphabeticString(a));
     address_Field.sendKeys(address);
     city_Field.sendKeys(city);
     state_Field.selectByIndex(4);
@@ -128,8 +125,23 @@ public void SearchForAnItem() throws InterruptedException {
     register.click();
 
     WebElement addressConfirmation = driver.findElement(By.className("page-subheading"));
+    sleep(3000);
     assertEquals("your delivery address", addressConfirmation.getText().toLowerCase());
 
+
+    WebElement proceedToCheckoutTwo = driver.findElement(By.xpath("//*[@id=\"center_column\"]/form/p/button/span"));
+    proceedToCheckoutTwo.click();
+    WebElement checkbox = driver.findElement(By.id("cgv"));
+    checkbox.click();
+    assertTrue(checkbox.isSelected());
+    WebElement proceedToCheckoutThree = driver.findElement(By.xpath("//*[@id=\"form\"]/p/button/span"));
+    proceedToCheckoutThree.click();
+    WebElement payByBank = driver.findElement(By.className("bankwire"));
+    payByBank.click();
+    WebElement confirmOrder = driver.findElement(By.xpath("//*[@id=\"cart_navigation\"]/button/span"));
+    confirmOrder.click();
+    WebElement orderCompleteConfirm = driver.findElement(By.className("cheque-indent"));
+    assertTrue(orderCompleteConfirm.isDisplayed());
 
 
 
