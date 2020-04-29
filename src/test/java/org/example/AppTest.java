@@ -92,7 +92,7 @@ public void seleniumExampleTest() throws InterruptedException{
     driver.get("https://www.google.com/");
     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
             .withTimeout(30,TimeUnit.SECONDS)           // looks for 30 secs
-            .pollingEvery(5, TimeUnit.SECONDS)          //
+            .pollingEvery(5, TimeUnit.SECONDS)          // the frequency of how they check to the success and failure of the check
             .ignoring(NoSuchElementException.class);
     WebElement searchBar = wait.until(new Function<WebDriver, WebElement>() {
         @Override
