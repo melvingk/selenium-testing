@@ -48,36 +48,45 @@ public void SearchForAnItem() throws InterruptedException {
     assertTrue(confirmedSearchText.isDisplayed());
     sleep(2000);
     System.out.println(confirmedSearchText.getText());
-  //  assertEquals(item,confirmedSearchText.getText());
+    //  assertEquals(item,confirmedSearchText.getText());
 
-  WebElement clickOnItem = driver.findElement(By.cssSelector("#center_column > ul > li > div > div.left-block > div > a.product_img_link > img"));
-  clickOnItem.click();
-  WebElement addToCart = driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button/span"));
-  addToCart.click();
+    WebElement clickOnItem = driver.findElement(By.cssSelector("#center_column > ul > li > div > div.left-block > div > a.product_img_link > img"));
+    clickOnItem.click();
+    WebElement addToCart = driver.findElement(By.xpath("//*[@id=\"add_to_cart\"]/button/span"));
+    addToCart.click();
+    sleep(3000);
+    WebElement clickTheCross = driver.findElement(By.className("cross"));
+    clickTheCross.click();
+    WebElement openCart = driver.findElement(By.xpath("//*[@id=\"header\"]/div[3]/div/div/div[3]/div/a"));
+    openCart.click();
+    sleep(3000);
 
-  WebElement confirmedAddedToCart = driver.findElement(By.className("product-name"));
-  assertEquals("Printed Dress",confirmedAddedToCart.getText());
-//    WebElement proceedToCheckoutButton = driver.findElement(By.xpath("//*[@id=\"center_column\"]/p[2]/a[1]/span"));
-//    proceedToCheckoutButton.click();
-//
-//    WebElement emailAddressField = driver.findElement(By.id("email_create"));
-//    emailAddressField.sendKeys(email);
+
+
+
+
+
+//    WebElement proceedToCheckout = wait.until(new Function<WebDriver, WebElement>() {
+//        @Override
+//        public WebElement apply(WebDriver webDriver) {
+//            return driver.findElement(By.className("icon-chevron-right right"));
+//        }
+//    });
+//    sleep(1000);
+//    proceedToCheckout.click();
+
+
+//  WebElement proceedToCheckoutTwo = wait.until(new Function<WebDriver, WebElement>() {
+//        @Override
+//        public WebElement apply(WebDriver webDriver) {
+//            return driver.findElement(By.cssSelector("#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium > span"));
+//        }
+//    });
+////    WebElement proceedToCheckoutTwo = driver.findElement(By.className("button btn btn-default standard-checkout button-medium"));
+//    proceedToCheckoutTwo.click();
+
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @After
@@ -87,3 +96,9 @@ public void SearchForAnItem() throws InterruptedException {
 
 
 }
+//  assertEquals("Printed Dress",confirmedAddedToCart.getText());
+//    WebElement proceedToCheckoutButton = driver.findElement(By.xpath("//*[@id=\"center_column\"]/p[2]/a[1]/span"));
+//    proceedToCheckoutButton.click();
+//
+//    WebElement emailAddressField = driver.findElement(By.id("email_create"));
+//    emailAddressField.sendKeys(email);
