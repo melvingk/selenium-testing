@@ -31,7 +31,9 @@ public class DrawAHouse {
         Actions action = new Actions(driver);
         action.moveToElement(drawingArea).clickAndHold()
                 .moveByOffset(0,100)
-
+                .moveByOffset(200,0)
+                .moveByOffset(0,-100)
+                .moveByOffset(-200,0)
                 .perform();
         sleep(3000);
     }
