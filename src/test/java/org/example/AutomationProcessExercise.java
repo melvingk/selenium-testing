@@ -5,13 +5,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
@@ -38,7 +42,14 @@ public void SearchForAnItem() throws InterruptedException {
             .ignoring(NoSuchElementException.class);
 
     String item = "EVENING DRESSES";
-    String email = "mee@me.com";
+    String email = "migpi@mwetet.com";
+    String firstName = "Tanjiro";
+    String lastName = "Kamado";
+    String password = "mannna";
+    String address = "Tikiki Street";
+    String city = "London";
+    String postal = "12332";
+    String number = "1254683256";
     WebElement homeSearchBar = driver.findElement(By.id("search_query_top"));
 
     homeSearchBar.sendKeys(item);
@@ -65,7 +76,45 @@ public void SearchForAnItem() throws InterruptedException {
 
     WebElement emailAddressField = driver.findElement(By.id("email_create"));
     emailAddressField.sendKeys(email);
+    emailAddressField.submit();
     sleep(3000);
+    WebElement issue = driver.findElement(By.className("page-heading"));
+    assertTrue(issue.isDisplayed());
+    System.out.println(issue.getText());
+    sleep(3000);
+
+    WebElement maleRadioButton = driver.findElement(By.id("id_gender1"));
+    WebElement customer_firstname = driver.findElement(By.id("customer_firstname"));
+    WebElement customer_lastname = driver.findElement(By.id("customer_lastname"));
+    WebElement passwordField = driver.findElement(By.id("passwd"));
+    WebElement address_Field = driver.findElement(By.id("address1"));
+    WebElement city_Field = driver.findElement(By.id("city"));
+    Select state_Field = new Select(driver.findElement(By.id("id_state")));
+    WebElement postcode_Field = driver.findElement(By.id("postcode"));
+    WebElement phone_mobile_Field = driver.findElement(By.id("phone_mobile"));
+    WebElement register = driver.findElement(By.xpath("//*[@id=\"submitAccount\"]/span"));
+
+
+    maleRadioButton.click();
+    customer_firstname.sendKeys(firstName);
+    customer_lastname.sendKeys(lastName);
+    passwordField.sendKeys(password);
+    address_Field.sendKeys(address);
+    city_Field.sendKeys(city);
+    state_Field.selectByIndex(4);
+    postcode_Field.sendKeys(postal);
+    phone_mobile_Field.sendKeys(number);
+    register.click();
+
+    WebElement addressConfirmation = driver.findElement(By.className("page-subheading"));
+    assertEquals("your delivery address", addressConfirmation.getText().toLowerCase());
+
+
+
+
+
+
+
 
 
 
