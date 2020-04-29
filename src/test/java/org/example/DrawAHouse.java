@@ -28,14 +28,24 @@ public class DrawAHouse {
         WebElement drawingArea = driver.findElement(By.id("catch"));
         System.out.println("Its there at " + drawingArea.getLocation());
 
+
         Actions action = new Actions(driver);
         action.moveToElement(drawingArea).clickAndHold()
-                .moveByOffset(0,100)
-                .moveByOffset(200,0)
-                .moveByOffset(0,-100)
-                .moveByOffset(-200,0)
-                .perform();
+                .moveByOffset(0, 200)
+                .moveByOffset(400, 0)
+                .moveByOffset(0, -200)
+                .moveByOffset(-400, 0)
+                .moveByOffset(190, -190)
+                .moveByOffset(210, 190)
+        .release().perform();
+
+        action.moveByOffset(50, 50)
+                .moveByOffset(40, 40).clickAndHold()
+                        .release().perform();
+
+
         sleep(3000);
+
     }
 
 
