@@ -47,9 +47,6 @@ public class DrawAHouse {
         sleep(3000);
 
     }
-
-
-
     @After
     public void teardown(){
         driver.close();
