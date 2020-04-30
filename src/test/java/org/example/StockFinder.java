@@ -63,7 +63,9 @@ public class StockFinder {
         sleep(5000);
         riserTab.click();
         sleep(5000);
-
+        WebElement confirmOnRiserPage = driver.findElement(By.className("main"));
+        test.log(LogStatus.INFO, "Navigating to FTSE 100 riser page");
+        assertEquals(confirmOnRiserPage.getText(),"FTSE 100: TOP 20 RISERS");
 
     }
 
