@@ -51,19 +51,32 @@ public class StockFinder {
         assertEquals(driver.getTitle(), "FTSE 100 Market overview | Hargreaves Lansdown");
         test.log(LogStatus.PASS, "The titles match");
         sleep(2000);
-        WebElement riserTab = driver.findElement(By.tagName("strong"));                 // try other locators, but good luck
+        if(driver instanceof JavascriptExecutor)
+        {
+            ((JavascriptExecutor) driver).executeScript( "window.scrollBy(0,1000)");
+            sleep(1000);
+        }
+        else{
+            System.out.println("Can't execute JS");
+        }
+        WebElement riserTab = driver.findElement(By.xpath("//*[@id=\"view-constituents\"]/ul/li[2]/a"));
+        sleep(5000);
         riserTab.click();
-
-//        sleep(2000);
-
-//        sleep(2000);
-//        WebElement confirmOnRiserPage = driver.findElement(By.className("main"));
-//        assertEquals(confirmOnRiserPage.getText(),"FTSE 100: Top 20 risers");
-
-
+        sleep(5000);
 
 
     }
+
+
+
+
+//        sleep(2000);
+
+
+
+
+
+
 
     @AfterMethod
 
