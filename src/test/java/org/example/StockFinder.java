@@ -4,6 +4,7 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +13,7 @@ import org.testng.annotations.*;
 
 import java.io.File;
 
+import static java.lang.Thread.sleep;
 import static org.testng.Assert.assertEquals;
 
 public class StockFinder {
@@ -40,7 +42,7 @@ public class StockFinder {
         driver = new ChromeDriver();
     }
     @Test
-    public void stockMarketHighestRiser(){
+    public void stockMarketHighestRiser() throws InterruptedException {
         test = report.startTest("Identifying the highest riser");
         driver.manage().window().maximize();
         test.log(LogStatus.INFO, "Started chrome browser and made it fullscreen");
@@ -48,8 +50,16 @@ public class StockFinder {
         test.log(LogStatus.INFO, "Navigating to Hargreaves Lansdown, FTSE 100 webpage");
         assertEquals(driver.getTitle(), "FTSE 100 Market overview | Hargreaves Lansdown");
         test.log(LogStatus.PASS, "The titles match");
-        WebElement riserTab = driver.findElement(By.xpath("//*[@id=\"view-constituents\"]/ul/li[2]/a"));
+        sleep(2000);
+        WebElement riserTab = driver.findElement(By.tagName("strong"));                 // try other locators, but good luck
         riserTab.click();
+
+//        sleep(2000);
+
+//        sleep(2000);
+//        WebElement confirmOnRiserPage = driver.findElement(By.className("main"));
+//        assertEquals(confirmOnRiserPage.getText(),"FTSE 100: Top 20 risers");
+
 
 
 
