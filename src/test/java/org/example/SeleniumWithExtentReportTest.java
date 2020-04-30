@@ -68,7 +68,24 @@ public class SeleniumWithExtentReportTest {
         test.log(LogStatus.PASS,"The logo was present", "<img src=logoPage.jpg>");          //places image into the Extent Reports
 
     }
-
+    @Test
+    public void useJavaScriptExecutor() throws InterruptedException {
+        test = report.startTest("Checking QA website logo is displayed");
+        driver.manage().window().maximize();
+        test.log(LogStatus.INFO, "Started chrome browser and made it fullscreen");
+        driver.get("https://www.qa.com");
+        test.log(LogStatus.INFO, "Navigating to the QA website");
+        if(driver instanceof JavascriptExecutor)
+        {
+            ((JavascriptExecutor) driver).executeScript("alert('Helloooo')");
+            sleep(1000);
+            driver.switchTo().alert().accept();
+            sleep(1000);
+        }
+        else{
+            System.out.println("Can't execute JS");
+        }
+    }
     @AfterMethod                                                                            // annotations used when test is done
     public void getResult(ITestResult result){                                              // A method that accumulates all failures within the method that fails and logs it in the report
         driver.close();
