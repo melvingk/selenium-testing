@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
+import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -144,16 +145,18 @@ sleep(3000);
     assertTrue(orderCompleteConfirm.isDisplayed());
 
 
+}
 
 
+    @After
+    public void teardown() throws IOException {
+        driver.close();
+        Runtime.getRuntime().exec("taskkill /F /IM ChromeDriver.exe");
+    }
 
 
-
-
-
-
-
-
+}
+//  assertEquals("Printed Dress",confirmedAddedToCart.getText());
 //    WebElement proceedToCheckout = wait.until(new Function<WebDriver, WebElement>() {
 //        @Override
 //        public WebElement apply(WebDriver webDriver) {
@@ -172,16 +175,3 @@ sleep(3000);
 //    });
 ////    WebElement proceedToCheckoutTwo = driver.findElement(By.className("button btn btn-default standard-checkout button-medium"));
 //    proceedToCheckoutTwo.click();
-
-
-}
-
-
-    @After
-    public void teardown(){
-        driver.close();
-    }
-
-
-}
-//  assertEquals("Printed Dress",confirmedAddedToCart.getText());
