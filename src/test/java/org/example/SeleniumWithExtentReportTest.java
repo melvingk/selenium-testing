@@ -3,14 +3,18 @@ package org.example;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-import org.openqa.selenium.WebDriver;
+import org.apache.maven.surefire.shade.org.apache.maven.shared.utils.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.File;
+import java.io.IOException;
 
+import static java.lang.Thread.sleep;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class SeleniumWithExtentReportTest {
 
@@ -47,6 +51,22 @@ public class SeleniumWithExtentReportTest {
         test.log(LogStatus.INFO, "Navigating to the QA website");
         assertEquals(driver.getTitle(), "Virtual and online classes in technology, project management and leadership | QA");
         test.log(LogStatus.PASS, "The title was exactly the same");                         //logs the status of a pass/fail
+    }
+
+    @Test
+    public void takeScreenShow() throws IOException {
+        test = report.startTest("Checking QA website logo is displayed");
+        driver.manage().window().maximize();
+        test.log(LogStatus.INFO, "Started chrome browser and made it fullscreen");
+        driver.get("https://www.qa.com");
+        test.log(LogStatus.INFO, "Navigating to the QA website");
+        WebElement logo = driver.findElement(By.id("Path_582"));
+        assertTrue(logo.isDisplayed());
+        File picture = ((TakesScreenshot) driver). getScreenshotAs(OutputType.FILE);                //takes a screenshot and saves it for a period of time
+        FileUtils.copyFile(picture, new File(System.getProperty("user.dir") + "/test-output/logoPage.jpg"));    //saves the screenshot on the file explorer system(on the file directory of the computer)-uses the maven's fileutilis maven library
+
+        test.log(LogStatus.PASS,"The logo was present", "<img src=logoPage.jpg>");          //places image into the Extent Reports
+
     }
 
     @AfterMethod                                                                            // annotations used when test is done
