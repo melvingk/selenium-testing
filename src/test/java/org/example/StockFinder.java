@@ -66,6 +66,9 @@ public class StockFinder {
         WebElement confirmOnRiserPage = driver.findElement(By.className("main"));
         test.log(LogStatus.INFO, "Navigating to FTSE 100 riser page");
         assertEquals(confirmOnRiserPage.getText(),"FTSE 100: TOP 20 RISERS");
+        WebElement theHighestRiser = driver.findElement(By.xpath("//*[@id=\"ls-row-RB.-L\"]/td[2]"));
+        test.log(LogStatus.INFO, "The highest risers in the FTSE 100 is " + theHighestRiser.getText());
+
 
     }
 
