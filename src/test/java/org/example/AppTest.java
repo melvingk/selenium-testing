@@ -85,7 +85,7 @@ public void seleniumExampleTest() throws InterruptedException{
             .until(ExpectedConditions.presenceOfElementLocated(By.name("q")));
 
             assertTrue(searchBar.isDisplayed());
-
+        List<WebElement> somthing= driver.findElements(By.id("dgsgs"));                 // when using to find a list of elements
     }
     @Test
             public void fluentWaitExample(){
@@ -102,6 +102,7 @@ public void seleniumExampleTest() throws InterruptedException{
     });
         assertTrue(searchBar.isDisplayed());
 
+
     }
     {
 
@@ -117,14 +118,14 @@ public void seleniumExampleTest() throws InterruptedException{
 
 }
 
-//
+//                  List<Webelement> listofelements = driver.findElements(By.id("dgsgs");
 //        Actions action = new Actions(driver);
 //        action.moveByOffset(50,50).clickAndHold().moveByOffset(50,50).perform(); // This moves the mouse by co-oridinates, and drags and drops the element to another set of co-oridinates
 //        action.moveToElement("imagelink") // moves it to the desired webelement
 //        catch
 //
 //
-//        List<Webelement> listofelements = driver.findElements(By.id("dgsgs"))
+
 //
 //        imageLink.getLocation();                     //gets the location of the webelement
 //        imageLink.getSize();                        // gets it by length and width
